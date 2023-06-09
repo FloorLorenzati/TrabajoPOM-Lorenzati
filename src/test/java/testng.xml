@@ -5,18 +5,18 @@
     <classes>
         <class name="tests.Tests">
             <methods>
-                <include name="CPG001VereficarFiltroNotebooks"/>
-                <include name="CPG002VereficarFiltroLenovo"/>
-                <include name="CPG003VereficarFiltroProcesador"/>
-                <include name="CPG004VereficarFiltroNucleo"/>
-                <include name="CPG005VereficarFiltroPlacas"/>
-                <include name="CPG006VereficarFiltroTeclado"/>
-                <include name="CPG007VereficarTituloMother"/>
-                <include name="CPG008VereficarTituloCooler"/>
-                <include name="CPG009VereficarProductoLLegoACarrito"/>
-                <include name="CPG010VereficarCuponMalIngresado"/>
-                <include name="CPG011VereficarBorradoDeProductoEnCarrito"/>
-                <include name="CPG012VereficarMensajeDeEmailIncorrecto"/>
+                <include name="tituloListado_FRG001"/>
+                <include name="mensajeEdentidad_FRG002"/>
+                <include name="vereficarTituloBuscado_FRG003"/>
+                <include name="vereficarTituloMedioDePago_FRG004"/>
+                <include name="vereficarMensajeIngresarEmail_FRG005"/>
+                <include name="vereficarCarritoVacio_FRG006"/>
+                <include name="vereficarCambioDeCodigoPostal_FRG007"/>
+                <include name="busquedaDeLaMarca_FRG008"/>
+                <include name="contactanos_FRG009"/>
+                <include name="cupon_FRG010"/>
+                <include name="filtroHogar_FRG011"/>
+                <include name="ventaTelefonica_FRG012"/>
 
             </methods>
         </class>

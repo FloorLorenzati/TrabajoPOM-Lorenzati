@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
+import utils.DataDriven;
 import utils.PropertiesDriven;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class Tests{
     //declarar atributos
     private WebDriver driver;
     private Fravega fravega;
-    private ArrayList<String> excelCPG;
+    private ArrayList<String> excelFRG;
 
 
     //.@AfterMethod
@@ -27,7 +28,7 @@ public class Tests{
     @BeforeMethod
     public void preparacionEjecucion(){
         //Instanciar los objetos
-        excelCPG = new ArrayList<>();
+        excelFRG = new ArrayList<>();
         //Pages
         fravega = new Fravega(driver);
         //Usamos cualquir pages para conextar a las properties
@@ -43,93 +44,106 @@ public class Tests{
 
     @Test
     public void tituloListado_FRG001(){
+        excelFRG = DataDriven.getData("FRG - 001");
         fravega.iraListadodeSucursales();
         System.out.println(fravega.vereficarTituloListado());
-        Assertions.assertEquals(fravega.vereficarTituloListado(),"Listado de Sucursales");
+        Assertions.assertEquals(fravega.vereficarTituloListado(),excelFRG.get(1));
     }
 
     @Test
     public void mensajeEdentidad_FRG002(){
+        excelFRG = DataDriven.getData("FRG - 002");
         fravega.iraMisDatos();
         System.out.println(fravega.vereficarMensajeIdentidad());
-        Assertions.assertEquals(fravega.vereficarMensajeIdentidad(),"Elija una de las opciones para confirmar su identidad");
+        Assertions.assertEquals(fravega.vereficarMensajeIdentidad(),excelFRG.get(1));
     }
 
     @Test
     public void vereficarTituloBuscado_FRG003(){
-        fravega.buscarProducto("tele");
+        excelFRG = DataDriven.getData("FRG - 003");
+        fravega.buscarProducto(excelFRG.get(1));
         System.out.println(fravega.vereficarTituloBuscado());
-        Assertions.assertEquals(fravega.vereficarTituloBuscado(),"Tele");
+        Assertions.assertEquals(fravega.vereficarTituloBuscado(),excelFRG.get(2));
     }
 
     @Test
     public void vereficarTituloMedioDePago_FRG004(){
-        fravega.elegirPrimerProducto("heladera");
+        excelFRG = DataDriven.getData("FRG - 004");
+        fravega.elegirPrimerProducto(excelFRG.get(1));
         fravega.irAMediosDePagos();
         System.out.println(fravega.vereficarTituloMedioDePagos());
-        Assertions.assertEquals(fravega.vereficarTituloMedioDePagos(),"Medios de pago y cuotas");
+        Assertions.assertEquals(fravega.vereficarTituloMedioDePagos(),excelFRG.get(2));
 
     }
     @Test
     public void vereficarMensajeIngresarEmail_FRG005(){
-        fravega.elegirPrimerProducto("PC");
+        excelFRG = DataDriven.getData("FRG - 005");
+        fravega.elegirPrimerProducto(excelFRG.get(1));
         fravega.iraComprar();
         fravega.irAFinalizarCompra();
         System.out.println(fravega.vereficarMensajeIngresarEmail());
-        Assertions.assertEquals(fravega.vereficarMensajeIngresarEmail(),"Ingresa tu mail para continuar la compra.");
+        Assertions.assertEquals(fravega.vereficarMensajeIngresarEmail(),excelFRG.get(2));
     }
 
     @Test
     public void vereficarCarritoVacio_FRG006(){
-        fravega.elegirPrimerProducto("PC");
+        excelFRG = DataDriven.getData("FRG - 006");
+        fravega.elegirPrimerProducto(excelFRG.get(1));
         fravega.iraComprar();
         fravega.eliminarProducto();
         System.out.println(fravega.vereficarCarritoVacio());
-        Assertions.assertEquals(fravega.vereficarCarritoVacio(),"Su carrito está vacio");
+        Assertions.assertEquals(fravega.vereficarCarritoVacio(),excelFRG.get(2));
     }
 
     @Test
     public void vereficarCambioDeCodigoPostal_FRG007(){
-        fravega.cambiarcodigoPostal("7000");
+        excelFRG = DataDriven.getData("FRG - 007");
+        fravega.cambiarcodigoPostal(excelFRG.get(1));
         System.out.println(fravega.vereficarCambioDeCodigoPostal());
-        Assertions.assertEquals(fravega.vereficarCambioDeCodigoPostal(),"Estás en\n" + "Tandil\n" + "(7000)");
+        Assertions.assertEquals(fravega.vereficarCambioDeCodigoPostal(),excelFRG.get(2));
     }
 
     @Test
     public void busquedaDeLaMarca_FRG008(){
-        fravega.ingresarMarcaEnServico("hp");
+        excelFRG = DataDriven.getData("FRG - 008");
+        fravega.ingresarMarcaEnServico(excelFRG.get(1));
         System.out.println(fravega.vereficarBusquedaDeLaMarca());
-        Assertions.assertEquals(fravega.vereficarBusquedaDeLaMarca(),"HP");
+        Assertions.assertEquals(fravega.vereficarBusquedaDeLaMarca(),excelFRG.get(2));
     }
 
     @Test
     public void contactanos_FRG009(){
+        excelFRG = DataDriven.getData("FRG - 009");
         fravega.iraContactanos();
         System.out.println(fravega.vereficarContactanos());
-        Assertions.assertEquals(fravega.vereficarContactanos(),"Contactanos");
+        Assertions.assertEquals(fravega.vereficarContactanos(),excelFRG.get(1));
     }
 
 
     @Test
     public void cupon_FRG010() {
-        fravega.elegirPrimerProducto("PC");
+        excelFRG = DataDriven.getData("FRG - 010");
+        fravega.elegirPrimerProducto(excelFRG.get(1));
         fravega.iraComprar();
-        fravega.iraCupon("CuponFravega");
+        fravega.iraCupon(excelFRG.get(2));
         System.out.println(fravega.vereficarCupon());
-        Assertions.assertEquals(fravega.vereficarCupon(),"Cupón CuponFravega inválido");
+        Assertions.assertEquals(fravega.vereficarCupon(),excelFRG.get(3));
     }
 
     @Test
     public void filtroHogar_FRG011(){
-        fravega.buscarProducto("tele");
+        excelFRG = DataDriven.getData("FRG - 011");
+        fravega.buscarProducto(excelFRG.get(1));
         fravega.ponerFiltroHogar();
         System.out.println(fravega.vereficarFiltroHogar());
+        Assertions.assertEquals(fravega.vereficarFiltroHogar(),excelFRG.get(2));
     }
 
     @Test
     public void ventaTelefonica_FRG012(){
+        excelFRG = DataDriven.getData("FRG - 012");
         fravega.irAVentaTelefonica();
         System.out.println(fravega.vereficarVentaTelefonica());
-        Assertions.assertEquals(fravega.vereficarVentaTelefonica(),"Venta telefónica");
+        Assertions.assertEquals(fravega.vereficarVentaTelefonica(),excelFRG.get(1));
     }
 }
